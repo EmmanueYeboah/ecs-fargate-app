@@ -43,6 +43,7 @@ resource "aws_iam_role_policy" "github_actions_policy" {
           "iam:GetOpenIDConnectProvider",
           "iam:GetRole",
           "iam:GetRolePolicy",
+          "iam:ListRolePolicies",
           "s3:GetObject",
           "s3:PutObject",
           "s3:DeleteObject",
