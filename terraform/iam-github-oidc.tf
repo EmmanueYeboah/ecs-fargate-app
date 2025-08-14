@@ -44,6 +44,7 @@ resource "aws_iam_role_policy" "github_actions_policy" {
           "iam:GetRole",
           "iam:GetRolePolicy",
           "iam:ListRolePolicies",
+          "iam:ListAttachedRolePolicies",
           "s3:GetObject",
           "s3:PutObject",
           "s3:DeleteObject",
