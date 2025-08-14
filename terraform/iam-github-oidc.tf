@@ -39,14 +39,10 @@ resource "aws_iam_role_policy" "github_actions_policy" {
       {
         Effect = "Allow"
         Action = [
-          "ecr:GetAuthorizationToken",
-          "ecr:BatchCheckLayerAvailability",
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:BatchGetImage",
-          "ecr:InitiateLayerUpload",
-          "ecr:UploadLayerPart",
-          "ecr:CompleteLayerUpload",
-          "ecr:PutImage",
+          "ecr:*",
+          "iam:GetOpenIDConnectProvider",
+          "iam:GetRole",
+          "iam:GetRolePolicy",
           "s3:GetObject",
           "s3:PutObject",
           "s3:DeleteObject",
