@@ -54,7 +54,7 @@ resource "aws_lb_target_group" "app" {
   health_check {
     enabled             = true
     healthy_threshold   = 2
-    path                = "/health"
+    path                = "/healthz"
     matcher             = "200"
   }
 }

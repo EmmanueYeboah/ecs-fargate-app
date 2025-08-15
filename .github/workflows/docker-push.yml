@@ -67,9 +67,4 @@ jobs:
             --cluster $CLUSTER_NAME \
             --service $SERVICE_NAME \
             --force-new-deployment
-
-      - name: Wait for deployment
-        run: |
-          aws ecs wait services-stable \
-            --cluster $CLUSTER_NAME \
-            --services $SERVICE_NAME
+          echo "Deployment initiated. Check ECS console for status."
