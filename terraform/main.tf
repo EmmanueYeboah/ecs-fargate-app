@@ -1,9 +1,10 @@
 terraform {
   backend "s3" {
-    bucket  = "terraform-state-apple-1755178786"
-    key     = "ecs-fargate-app/terraform.tfstate"
-    region  = "us-east-2"
-    encrypt = true
+    bucket         = "your-terraform-state-bucket"
+    key            = "ecs-fargate-app/terraform.tfstate"
+    region         = "us-east-2"
+    dynamodb_table = "terraform-lock-table"
+    encrypt        = true
   }
 }
 
@@ -22,4 +23,12 @@ resource "aws_ecr_repository" "app_repo" {
 
 output "ecr_repository_url" {
   value = aws_ecr_repository.app_repo.repository_url
+}
+
+output "ecs_cluster_name" {
+  value = aws_ecs_cluster.main.name
+}
+
+output "ecs_service_name" {
+  value = aws_ecs_service.app.name
 }
