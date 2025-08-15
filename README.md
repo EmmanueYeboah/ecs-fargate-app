@@ -180,11 +180,3 @@ ecs-fargate-app/
 └── README.md                   # This file
 ```
 
-## Next Steps
-
-- [ ] Add HTTPS/SSL certificate
-- [ ] Implement blue/green deployments
-- [ ] Add application metrics
-- [ ] Set up alerting
-- [ ] Add database integration
-- [ ] Implement service mesh
