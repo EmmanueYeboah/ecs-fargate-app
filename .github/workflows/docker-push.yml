@@ -24,16 +24,27 @@ jobs:
           role-to-assume: arn:aws:iam::791608741362:role/GitHubActionsTerraformRole
           aws-region: us-east-2
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        run: terraform -chdir=terraform init
+
       - name: Get ECR login
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Set image variables
         run: |
-          echo "ECR_REPO=$(terraform -chdir=terraform output -raw ecr_repository_url)" >> $GITHUB_ENV
+          ECR_REPO=$(terraform -chdir=terraform output -raw ecr_repository_url)
+          echo "ECR_REPO=$ECR_REPO" >> $GITHUB_ENV
           echo "IMAGE_TAG=${GITHUB_SHA:0:8}" >> $GITHUB_ENV
           echo "CLUSTER_NAME=$(terraform -chdir=terraform output -raw ecs_cluster_name)" >> $GITHUB_ENV
           echo "SERVICE_NAME=$(terraform -chdir=terraform output -raw ecs_service_name)" >> $GITHUB_ENV
+          echo "Debug: ECR_REPO=$ECR_REPO"
+          echo "Debug: IMAGE_TAG=${GITHUB_SHA:0:8}"
 
       - name: Build Docker image
         run: |
